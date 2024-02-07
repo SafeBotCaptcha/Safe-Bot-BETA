@@ -16,3 +16,7 @@ The code also utilizes color coding to highlight the correct number and improve 
 # What ChatGPT thinks
 
 ![j](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/560de6cd-16ae-4c27-88b4-f6d6bd64b06b)
+
+# What Google Bard thinks
+![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/70f1588d-3853-4a00-9889-72c2692a3c95)
+
