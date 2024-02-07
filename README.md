@@ -19,3 +19,7 @@ The code also utilizes color coding to highlight the correct number and improve 
 
 # What Google Bard thinks
 ![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/2a7ddc0c-f2df-492b-bd5c-ce409bb3fe4d)
+
+# What LLama 2 AI thinks
+![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/de23becb-2782-49ed-bb67-f4a1d977d8f9)
+
