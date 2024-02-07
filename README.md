@@ -23,5 +23,5 @@ The code also utilizes color coding to highlight the correct number and improve 
 # What LLama 2 AI thinks
 ![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/de23becb-2782-49ed-bb67-f4a1d977d8f9)
 
-#So what are you waiting for?
+# So what are you waiting for?
 Download now!
