@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Name | SaveBot 1.1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #captcha-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #number-container {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            border: 1px solid #000;
+        }
+
+        .number-box {
+            display: inline-block;
+            margin: 5px;
+            padding: 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        #progress {
+            display: none;
+        }
+
+        #custom-code {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #number-container {
+                width: 80%;
+            }
+
+            .number-box {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="captcha-container">
+        <p>Secured with <a href="https://github.com/SafeBotCaptcha/Safe-Bot-BETA" target="_blank">SafeBot</a></p>
+        <p>Click on the outcasting number:</p>
+        <div id="number-container"></div>
+        <p id="result"></p>
+        <p id="progress">1 out of 3</p>
+    </div>
+
+    <div id="custom-code">
+        <div style="text-align: center; margin-top: 20%;">
+            <pre>
+                <h2>Thank you for using SafeBot!</h2>
+                Look at the captcha code and paste the code of your Website in the id "custom code".
+                If you want to redirect the user to a website, use this code:
+                &lt;p&gt;To continue, please click &lt;a href="https://example.com"&gt;here&lt;/a&gt;.&lt;/p&gt;
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        var correctClicks = 0;
+        var reloadCount = 1;
+        var executeCode = 1;
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function doesOverlap(existingPositions, newPosition, margin) {
+            for (var i = 0; i < existingPositions.length; i++) {
+                var existingPosition = existingPositions[i];
+                if (
+                    newPosition.x < existingPosition.x + margin &&
+                    newPosition.x + margin > existingPosition.x &&
+                    newPosition.y < existingPosition.y + margin &&
+                    newPosition.y + margin > existingPosition.y
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function createMathCaptcha() {
+            var numberContainer = document.getElementById('number-container');
+            numberContainer.innerHTML = '';
+
+            var num1 = getRandomNumber(1, 10);
+            var num2 = getRandomNumber(1, 10);
+            var result = num1 + num2;
+
+            var targetColor = getRandomColor();
+            var sameColor = getRandomColor();
+            var positions = [];
+
+            for (var i = 1; i <= 15; i++) {
+                var newPosition;
+                do {
+                    newPosition = getRandomPosition(numberContainer, 30);
+                } while (doesOverlap(positions, newPosition, 30));
+
+                positions.push(newPosition);
+
+                var numberBox = document.createElement('div');
+                numberBox.className = 'number-box';
+                numberBox.textContent = (i === 8) ? result : getRandomNumber(1, 99);
+
+                if (i === 8) {
+                    numberBox.style.color = targetColor;
+                    numberBox.onclick = function () {
+                        correctClicks++;
+                        if (correctClicks === 3) {
+                            document.getElementById('result').textContent = 'Captcha Passed!';
+                            executeCustomCode();
+                        } else {
+                            document.getElementById('result').textContent = 'Correct number! ' + correctClicks + ' out of 3.';
+                            resetCaptcha();
+                        }
+                    };
+                } else {
+                    numberBox.style.color = sameColor;
+                    numberBox.onclick = function () {
+                        document.getElementById('result').textContent = 'Please reload this page.';
+                        document.getElementById('number-container').style.display = 'none';
+                    };
+                }
+
+                numberBox.style.position = 'absolute';
+                numberBox.style.left = newPosition.x + 'px';
+                numberBox.style.top = newPosition.y + 'px';
+
+                numberContainer.appendChild(numberBox);
+            }
+
+            document.getElementById('progress').style.display = 'block';
+            document.getElementById('progress').textContent = reloadCount + ' out of 3';
+        }
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function getRandomPosition(container, margin) {
+            var containerWidth = container.offsetWidth;
+            var containerHeight = container.offsetHeight;
+            var x = getRandomNumber(margin, containerWidth - margin - 50);
+            var y = getRandomNumber(margin, containerHeight - margin - 50);
+            return { x: x, y: y };
+        }
+
+        function resetCaptcha() {
+            var captchaContainer = document.getElementById('number-container');
+            var resultMessage = document.getElementById('result');
+            var customCodeContainer = document.getElementById('custom-code');
+            var progressText = document.getElementById('progress');
+
+            resultMessage.textContent = '';
+            captchaContainer.style.display = 'none';
+            progressText.style.display = 'none';
+
+            if (correctClicks < 3) {
+                reloadCount++;
+                if (reloadCount <= 3) {
+                    setTimeout(function () {
+                        captchaContainer.style.display = 'block';
+                        progressText.style.display = 'block';
+                        progressText.textContent = reloadCount + ' out of 3';
+                        createMathCaptcha();
+                    }, 1000);
+                } else {
+                    customCodeContainer.style.display = 'block';
+                }
+            } else {
+                customCodeContainer.style.display = 'block';
+            }
+        }
+
+        function executeCustomCode() {
+            var customCodeContainer = document.getElementById('custom-code');
+            customCodeContainer.style.display = 'block';
+            var captchaContainer = document.getElementById('captcha-container');
+            captchaContainer.style.display = 'none';
+        }
+
+        createMathCaptcha();
+    </script>
+
+</body>
+
+</html>
