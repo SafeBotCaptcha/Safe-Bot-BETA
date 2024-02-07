@@ -3,5 +3,5 @@
 Please read the LICENSE.
 
 # Next Release will have:
-> Multi language support
-> Better design
+- Multi language support
+- Better design
