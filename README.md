@@ -13,6 +13,6 @@ The code also utilizes color coding to highlight the correct number and improve 
 - Multi language support
 - Better design
 
-#What ChatGPT thinks
+# What ChatGPT thinks
 
 ![j](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/560de6cd-16ae-4c27-88b4-f6d6bd64b06b)
