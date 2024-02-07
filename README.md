@@ -1,8 +1,7 @@
 # Safe-Bot-BETA
 
------
 Please read the LICENSE.
------
+
 
 This code implements a security CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) functionality for a website. CAPTCHAs are used to ensure that users are real humans and not automated scripts that could abuse the website.
 
@@ -13,3 +12,6 @@ The code also utilizes color coding to highlight the correct number and improve 
 # Next Release will have:
 - Multi language support
 - Better design
+
+#What ChatGPT Thinks
+![j](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/560de6cd-16ae-4c27-88b4-f6d6bd64b06b)
