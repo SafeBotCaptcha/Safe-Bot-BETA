@@ -23,7 +23,4 @@ The code also utilizes color coding to highlight the correct number and improve 
 # What LLama 2 AI thinks
 ![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/de23becb-2782-49ed-bb67-f4a1d977d8f9)
 
-# What Rick thinks about it
-![image](https://github.com/SafeBotCaptcha/Safe-Bot-BETA/assets/159303239/a670eaf4-ca36-4f7f-879b-b2dbee62ad6b)
-
 > So what are you waiting for? Download now!
