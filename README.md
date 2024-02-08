@@ -1,4 +1,4 @@
-# Safe-Bot-BETA
+# SafeBot BETA
 
 Please read the LICENSE.
 
